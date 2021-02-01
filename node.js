@@ -17,11 +17,4 @@ class Node {
     }
 }
 
-const nodeOne = new Node('This is node One');
-const nodeTwo = new Node('This is node Two')
-nodeOne.nextNode = nodeTwo
-console.log(nodeOne);
-console.log(nodeOne.nextNode)
-const nodeThree = new Node('This is node Three')
-nodeTwo.nextNode = nodeThree
-console.log(nodeOne);
+module.exports = Node;
