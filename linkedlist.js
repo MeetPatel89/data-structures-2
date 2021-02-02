@@ -6,62 +6,47 @@ class LinkedList {
   }
 
   addToHead(data) {
-    const newHead = new Node(data);
-    const currentHead = this.head;
-    this.head = newHead;
-    if (currentHead) {
-      this.head.nextNode = currentHead;
+    const headToAdd = new Node(data);
+    let currentHead = this.head;
+    if (!currentHead) {
+      this.head = headToAdd;
     }
+    this.head = headToAdd;
+    this.head.nextNode = currentHead;
   }
 
   addToTail(data) {
-    let tail = this.head;
-    if (!tail) {
-      console.log('Empty linked list');
-      this.head = new Node(data);
+    const tailToAdd = new Node(data);
+    let currentNode = this.head;
+    if (!currentNode) {
+      this.head = tailToAdd;
     } else {
-      while (tail.nextNode) {
-        tail = tail.nextNode;
+      while (currentNode.nextNode) {
+        currentNode = currentNode.nextNode;
       }
-      tail.nextNode = new Node(data);
+      currentNode.nextNode = tailToAdd;
     }
   }
 
   removeHead() {
-    if (this.head) {
-      let currentHead = this.head;
-      this.head = currentHead.nextNode;
-      return currentHead;
-    } else {
-      return 'The linkedlist is empty/has no head';
+    const removedHead = this.head;
+    if (!removedHead) {
+      return;
     }
+    this.head = removedHead.getNextNode();
+    return removedHead.data;
   }
 
-  print() {
+  printList() {
     let currentNode = this.head;
-    let printedLinkedList = '';
-    if (!currentNode) {
-      console.log('The linked list is empty!');
+    let output = '<head> ';
+    while (currentNode !== null) {
+      output += currentNode.data + ' ';
+      currentNode = currentNode.next;
     }
-    while (currentNode) {
-      if (currentNode.nextNode) {
-        printedLinkedList += `${currentNode.data} -> `;
-      } else {
-        printedLinkedList += currentNode.data;
-      }
-      currentNode = currentNode.nextNode;
-    }
-    console.log(printedLinkedList);
+    output = output.concat('<tail>');
+    console.log(output);
   }
 }
 
-const linkedList = new LinkedList();
-linkedList.addToHead('Node One');
-linkedList.addToHead('Node Two');
-console.log(linkedList);
-linkedList.addToTail('Node Three');
-linkedList.print();
-console.log(linkedList);
-linkedList.removeHead();
-console.log(linkedList);
-linkedList.print();
+module.exports = LinkedList
