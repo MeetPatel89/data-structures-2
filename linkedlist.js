@@ -47,6 +47,30 @@ class LinkedList {
     output = output.concat('<tail>');
     console.log(output);
   }
+
+  findNodeIteratively(data) {
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      if (currentNode.data === data) {
+        return currentNode;
+      }
+      currentNode = currentNode.next;
+    }
+    return null;
+  }
+
+  findNodeRecursively(data, linkedList) {
+    let current = linkedList.head;
+    if (!current) {
+      return null
+    }
+    else if ( current.data === data) {
+      return current;
+    } else {
+      linkedList.removeHead();
+      return this.findNodeRecursively(data, linkedList);
+    }
+  }
 }
 
-module.exports = LinkedList
+module.exports = LinkedList;

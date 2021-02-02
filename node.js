@@ -17,7 +17,7 @@ class Node {
     }
   }
 
-  get nextNode() {
+  getNextNode() {
     return this.next;
   }
 }
